@@ -11,7 +11,9 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.financemanager.model.Category
 import com.example.financemanager.model.PaymentMethod
@@ -129,7 +131,7 @@ fun AddTransactionScreen(
 
                     Row(
                         modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.spacedBy(12.dp)
+                        horizontalArrangement = Arrangement.spacedBy(8.dp)
                     ) {
                         PaymentMethod.values().forEach { method ->
                             FilterChip(
@@ -140,11 +142,14 @@ fun AddTransactionScreen(
                                         when (method) {
                                             PaymentMethod.CASH -> "Cash"
                                             PaymentMethod.ALIPAY -> "Alipay"
+                                            PaymentMethod.WECHAT -> "WeChat"
                                             PaymentMethod.OCTOPUS -> "Octopus"
-                                        }
+                                        },
+                                        fontSize = 11.sp, // Smaller font
+                                        maxLines = 1,
+                                        overflow = TextOverflow.Ellipsis // Add ellipsis if needed
                                     )
-                                },
-                                modifier = Modifier.weight(1f)
+                                }
                             )
                         }
                     }

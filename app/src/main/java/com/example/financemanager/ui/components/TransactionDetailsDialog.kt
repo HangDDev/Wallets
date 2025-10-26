@@ -148,6 +148,7 @@ fun TransactionDetailsDialog(
                                 when (transaction.paymentMethod) {
                                     PaymentMethod.CASH -> "Cash Wallet"
                                     PaymentMethod.ALIPAY -> "Alipay"
+                                    PaymentMethod.WECHAT -> "Wechat"
                                     PaymentMethod.OCTOPUS -> "Octopus Card"
                                 }
                             ),

@@ -66,6 +66,7 @@ fun WalletTransactionsScreen(
                         when (wallet) {
                             PaymentMethod.CASH -> "Cash Wallet"
                             PaymentMethod.ALIPAY -> "Alipay"
+                            PaymentMethod.WECHAT -> "Wechat"
                             PaymentMethod.OCTOPUS -> "Octopus Card"
                         },
                         style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold)

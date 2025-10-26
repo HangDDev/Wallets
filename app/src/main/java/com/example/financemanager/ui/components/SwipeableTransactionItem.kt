@@ -126,7 +126,8 @@ fun SwipeableTransactionItem(
                             when (transaction.paymentMethod) {
                                 PaymentMethod.CASH -> MaterialTheme.colorScheme.primaryContainer
                                 PaymentMethod.ALIPAY -> MaterialTheme.colorScheme.secondaryContainer
-                                PaymentMethod.OCTOPUS -> MaterialTheme.colorScheme.tertiaryContainer
+                                PaymentMethod.WECHAT -> MaterialTheme.colorScheme.tertiaryContainer
+                                PaymentMethod.OCTOPUS -> MaterialTheme.colorScheme.secondaryContainer
                             }
                         ),
                     contentAlignment = Alignment.Center
@@ -135,12 +136,14 @@ fun SwipeableTransactionItem(
                         text = when (transaction.paymentMethod) {
                             PaymentMethod.CASH -> "C"
                             PaymentMethod.ALIPAY -> "A"
+                            PaymentMethod.WECHAT -> "W"
                             PaymentMethod.OCTOPUS -> "O"
                         },
                         style = MaterialTheme.typography.bodySmall.copy(fontWeight = FontWeight.Bold),
                         color = when (transaction.paymentMethod) {
                             PaymentMethod.CASH -> MaterialTheme.colorScheme.primary
                             PaymentMethod.ALIPAY -> MaterialTheme.colorScheme.secondary
+                            PaymentMethod.WECHAT -> MaterialTheme.colorScheme.tertiary
                             PaymentMethod.OCTOPUS -> MaterialTheme.colorScheme.tertiary
                         }
                     )
@@ -197,6 +200,7 @@ fun SwipeableTransactionItem(
                                 text = when (transaction.paymentMethod) {
                                     PaymentMethod.CASH -> "Cash"
                                     PaymentMethod.ALIPAY -> "Alipay"
+                                    PaymentMethod.WECHAT -> "Wechat"
                                     PaymentMethod.OCTOPUS -> "Octopus"
                                 },
                                 style = MaterialTheme.typography.labelSmall,

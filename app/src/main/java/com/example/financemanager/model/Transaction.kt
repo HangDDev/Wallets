@@ -45,5 +45,5 @@ data class Transaction(
 }
 
 enum class PaymentMethod {
-    CASH, ALIPAY, OCTOPUS
+    CASH, ALIPAY, WECHAT, OCTOPUS
 }

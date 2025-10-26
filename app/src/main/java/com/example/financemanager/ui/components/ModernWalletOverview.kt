@@ -3,6 +3,7 @@ package com.example.financemanager.ui.components
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountBalanceWallet
+import androidx.compose.material.icons.filled.CurrencyExchange
 import androidx.compose.material.icons.filled.Payment
 import androidx.compose.material.icons.filled.Wallet
 import androidx.compose.material3.*
@@ -52,6 +53,7 @@ private fun WalletBalanceRow(
     val (icon, walletName) = when (wallet) {
         PaymentMethod.CASH -> Pair(Icons.Default.Wallet, "Cash Wallet")
         PaymentMethod.ALIPAY -> Pair(Icons.Default.Payment, "Alipay")
+        PaymentMethod.WECHAT -> Pair(Icons.Default.CurrencyExchange, "Wechat")
         PaymentMethod.OCTOPUS -> Pair(Icons.Default.AccountBalanceWallet, "Octopus Card")
     }
 

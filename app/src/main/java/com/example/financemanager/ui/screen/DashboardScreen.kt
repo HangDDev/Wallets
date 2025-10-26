@@ -48,9 +48,16 @@ import androidx.compose.foundation.LocalIndication
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.material.icons.automirrored.filled.Chat
+import androidx.compose.material.icons.filled.AccountBalance
+import androidx.compose.material.icons.filled.AccountBalanceWallet
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.material.icons.filled.Assessment
+import androidx.compose.material.icons.filled.Chat
+import androidx.compose.material.icons.filled.Contactless
 import androidx.compose.material.icons.filled.Logout
+import androidx.compose.material.icons.filled.Payment
+import androidx.compose.material.icons.filled.Payments
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -606,6 +613,7 @@ fun WalletCard(
     val expense = viewModel.calculateExpenseByPaymentMethod(transactions, wallet)
     val balance = viewModel.calculateBalanceByPaymentMethod(transactions, wallet)
     val transactionCount = transactions.count { it.paymentMethod == wallet }
+    val WeChatGreen = Color(0xFF1AAD19)
 
     Card(
         modifier = Modifier
@@ -637,20 +645,27 @@ fun WalletCard(
                             .clip(MaterialTheme.shapes.medium)
                             .background(
                                 when (wallet) {
-                                    PaymentMethod.CASH -> MaterialTheme.colorScheme.primaryContainer
-                                    PaymentMethod.ALIPAY -> MaterialTheme.colorScheme.secondaryContainer
-                                    PaymentMethod.OCTOPUS -> MaterialTheme.colorScheme.tertiaryContainer
+                                    PaymentMethod.CASH -> MaterialTheme.colorScheme.primary.copy(alpha = 0.1f)
+                                    PaymentMethod.ALIPAY -> Color(0xFF1677FF).copy(alpha = 0.1f)
+                                    PaymentMethod.WECHAT -> Color(0xFF07C160).copy(alpha = 0.1f)
+                                    PaymentMethod.OCTOPUS -> Color(0xFF800080).copy(alpha = 0.1f)
                                 }
                             ),
                         contentAlignment = Alignment.Center
                     ) {
                         Icon(
-                            Icons.Default.Wallet,
+                            imageVector = when (wallet) {
+                                PaymentMethod.CASH -> Icons.Default.AccountBalance
+                                PaymentMethod.ALIPAY -> Icons.Default.Payment
+                                PaymentMethod.WECHAT -> Icons.Default.Chat
+                                PaymentMethod.OCTOPUS -> Icons.Default.Contactless
+                            },
                             contentDescription = null,
                             tint = when (wallet) {
                                 PaymentMethod.CASH -> MaterialTheme.colorScheme.primary
-                                PaymentMethod.ALIPAY -> MaterialTheme.colorScheme.secondary
-                                PaymentMethod.OCTOPUS -> MaterialTheme.colorScheme.tertiary
+                                PaymentMethod.ALIPAY -> Color(0xFF1677FF)
+                                PaymentMethod.WECHAT -> Color(0xFF07C160)
+                                PaymentMethod.OCTOPUS -> Color(0xFF800080)
                             },
                             modifier = Modifier.size(24.dp)
                         )
@@ -661,6 +676,7 @@ fun WalletCard(
                             text = when (wallet) {
                                 PaymentMethod.CASH -> "Cash Wallet"
                                 PaymentMethod.ALIPAY -> "Alipay"
+                                PaymentMethod.WECHAT -> "WeChat"
                                 PaymentMethod.OCTOPUS -> "Octopus Card"
                             },
                             style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),
